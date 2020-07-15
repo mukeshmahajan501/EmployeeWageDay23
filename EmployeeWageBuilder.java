@@ -1,26 +1,19 @@
-import java.util.*;
 public class EmployeeWageBuilder{
 
                 public static final int IS_FULL_TIME=1;
                 public static final int IS_PART_TIME=2;
-                public static final int EMP_RATE_PER_HOUR=20;
 
 
-		public void computeEmpWage()
+		public static void computeEmpWage(String company,int empRatePerHr,int numOfWorkingDays,int maxHrInMonth)
 		{	
 			     int empHrs=0;
-        int empWage=0;
-        int totalEmpWage=0;
-        int totalEmpHr=0;
-        int totalWorkingDays=0;
+        			int empWage=0;
+       		 int totalEmpWage=0;
+        		int totalEmpHr=0;
+        		int totalWorkingDays=0;
 
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Enter number of working days: ");
-        int days=sc.nextInt();
-        System.out.println("Enter maximum Hour in month: ");
-        int month=sc.nextInt();
 
-while(totalEmpHr<=month && totalWorkingDays<days)
+while(totalEmpHr<=maxHrInMonth && totalWorkingDays<numOfWorkingDays)
 {
         totalWorkingDays++;
         int empCheck=(int)Math.floor(Math.random() *10 )% 3;
@@ -37,10 +30,10 @@ switch (empCheck)
         }
 
         totalEmpHr+=empHrs;
-        totalEmpWage=+totalEmpHr*days;
-        System.out.println("Total Working Days: "+totalWorkingDays);
-        System.out.println("total Working Hour:"+totalEmpHr);
+			System.out.println("Days:"+totalWorkingDays);
+			System.out.println("Emp Hrs: "+empHrs);
 }
+		totalEmpWage=+totalEmpHr*empRatePerHr;
         System.out.println("Total Employee Wage is: "+totalEmpWage);
 
 
@@ -48,8 +41,7 @@ switch (empCheck)
 
 		
 public static void main(String args[]){
-EmployeeWageBuilder emp=new EmployeeWageBuilder();
-emp.computeEmpWage();
+computeEmpWage("DMART",20,2,10);
 
 
         }
