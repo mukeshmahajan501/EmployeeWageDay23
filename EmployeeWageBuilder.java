@@ -1,15 +1,12 @@
-public class EmployeeWageBuilder
-{
-                public static final int IS_FULL_TIME=1;
-                public static final int IS_PART_TIME=2;
-
-      public static  int EMP_RATE_PER_HOUR;
-                public static  int NUM_OF_WORKING_DAYS;
-                public static  int MAX_HR_IN_MONTH;
-                public static  String empCompany;
+class CompanyEmpWage{
 
 
-                public EmployeeWageBuilder(String company,int empRate,int workingHrs,int maxHrs)
+                                 public final  int EMP_RATE_PER_HOUR;
+                public final  int NUM_OF_WORKING_DAYS;
+                public final  int MAX_HR_IN_MONTH;
+                public final String empCompany;
+                                         public int totalEmpWage;
+public CompanyEmpWage(String company,int empRate,int workingHrs,int maxHrs)
                 {
                         empCompany=company;
                         EMP_RATE_PER_HOUR=empRate;
@@ -17,14 +14,53 @@ public class EmployeeWageBuilder
                         MAX_HR_IN_MONTH=maxHrs;
                 }
 
+        public void setTotalEmpWage(int totalEmpWage)
+        {
+                this.totalEmpWage=totalEmpWage;
+        }
 
-               public void calculateEmpWage()
+        public String toString()
+        {
+                return "Total Emp Wage For Company: "+empCompany+"is :"+totalEmpWage;
+        }
+
+}
+
+
+public class EmployeeWageBuilder
+{
+         public static final int IS_FULL_TIME=1;
+           public static final int IS_PART_TIME=2;
+
+        private int numOfCompany=0;
+        private CompanyEmpWage[] companyEmpWageArray;
+
+        public EmpWageBuilderArray()
+        {
+                companyEmpWageArray=new CompanyEmpWage[5];
+        }
+        private void addCompanyEmpWage(String empCompany,int EMP_RATE_PER_HOUR,int NUM_OF_WORKING_DAYS,int MAX_HR_IN_MONTH)
+        {
+                companyEmpWageArray[numOfCompany]=new CompanyEmpWage(empCompany,EMP_RATE_PER_HOUR,NUM_OF_WORKING_DAYS,MAX_HR_IN_MONTH);
+                numOfCompany++;
+        }
+        private void computeEmpWage()
+        {
+                for (int i=0;i<numOfCompany;i++)
+                {
+                        companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+                        System.out.println(companyEmpWageArray[i]);
+                }
+        }
+
+
+    public int computeEmpWage(CompanyEmpWage companyEmpWage)
                 {
                         int totalEmpHr=0;
                         int totalWorkingDays=0;
                         int totalEmpWage=0;
                         int empHrs=0;
-                while(totalEmpHr<=MAX_HR_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS)
+                while(totalEmpHr<=companyEmpWage.MAX_HR_IN_MONTH && totalWorkingDays<companyEmpWage.NUM_OF_WORKING_DAYS)
                 {
                         totalWorkingDays++;
                         int empCheck=(int)Math.floor(Math.random() *10 )% 3;
@@ -41,22 +77,21 @@ public class EmployeeWageBuilder
                         }
 
                                 totalEmpHr+=empHrs;
-                                totalEmpWage=+totalEmpHr*NUM_OF_WORKING_DAYS;
+                                totalEmpWage=+totalEmpHr*companyEmpWage.NUM_OF_WORKING_DAYS;
                                 System.out.println("Total Working Days: "+totalWorkingDays);
                                 System.out.println("total Working Hour:"+totalEmpHr);
                 }
-                                 System.out.println("Total Employee Wage of "+empCompany+" is: "+totalEmpWage);
-
+                                return totalEmpHr*companyEmpWage.EMP_RATE_PER_HOUR;
                 }
 
-public static void main(String args[])
+                public static void main(String args[])
         {
 
-                EmployeeWageBuilder emp=new EmployeeWageBuilder("DMART",20,20,100);
-                emp.calculateEmpWage();
-                EmpWageOOPS emp1=new EmpWageOOPS("Relince",30,20,100);
-	        emp1.calculateEmpWage();
-
+                EmployeeWageBuilder empWageBuilder=new EmployeeWageBuilder();
+                empWageBuilder.addCompanyEmpWage("DMART",20,2,10);
+                empWageBuilder.addCompanyEmpWage("RELIENCE",10,4,20);
+                empWageBuilder.computeEmpWage();
         }
+
 }
 
