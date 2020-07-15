@@ -1,3 +1,13 @@
+interface EmpWageInterface
+{
+
+	 void addCompanyEmpWage(String empCompany,int EMP_RATE_PER_HOUR,int NUM_OF_WORKING_DAYS,int MAX_HR_IN_MONTH);
+	void computeEmpWage();
+	
+}
+
+
+
 class CompanyEmpWage{
 
 
@@ -35,7 +45,7 @@ public class EmployeeWageBuilder
         private int numOfCompany=0;
         private CompanyEmpWage[] companyEmpWageArray;
 
-        public EmpWageBuilderArray()
+        public EmployeeWageBuilder()
         {
                 companyEmpWageArray=new CompanyEmpWage[5];
         }
