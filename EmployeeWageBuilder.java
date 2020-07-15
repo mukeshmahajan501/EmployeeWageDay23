@@ -37,7 +37,7 @@ public CompanyEmpWage(String company,int empRate,int workingHrs,int maxHrs)
 }
 
 
-public class EmployeeWageBuilder
+public class EmployeeWageBuilder implements EmpWageInterface
 {
          public static final int IS_FULL_TIME=1;
            public static final int IS_PART_TIME=2;
@@ -49,12 +49,12 @@ public class EmployeeWageBuilder
         {
                 companyEmpWageArray=new CompanyEmpWage[5];
         }
-        private void addCompanyEmpWage(String empCompany,int EMP_RATE_PER_HOUR,int NUM_OF_WORKING_DAYS,int MAX_HR_IN_MONTH)
+        public void addCompanyEmpWage(String empCompany,int EMP_RATE_PER_HOUR,int NUM_OF_WORKING_DAYS,int MAX_HR_IN_MONTH)
         {
                 companyEmpWageArray[numOfCompany]=new CompanyEmpWage(empCompany,EMP_RATE_PER_HOUR,NUM_OF_WORKING_DAYS,MAX_HR_IN_MONTH);
                 numOfCompany++;
         }
-        private void computeEmpWage()
+        public void computeEmpWage()
         {
                 for (int i=0;i<numOfCompany;i++)
                 {
