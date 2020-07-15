@@ -1,12 +1,14 @@
+import java.util.*;
 public class EmployeeWageBuilder{
 
                 public static final int IS_FULL_TIME=1;
                 public static final int IS_PART_TIME=2;
                 public static final int EMP_RATE_PER_HOUR=20;
 
-public static void main(String args[]){
 
-        int empHrs=0;
+		public void computeEmpWage()
+		{	
+			     int empHrs=0;
         int empWage=0;
         int totalEmpWage=0;
         int totalEmpHr=0;
@@ -40,6 +42,14 @@ switch (empCheck)
         System.out.println("total Working Hour:"+totalEmpHr);
 }
         System.out.println("Total Employee Wage is: "+totalEmpWage);
+
+
+        }
+
+		
+public static void main(String args[]){
+EmployeeWageBuilder emp=new EmployeeWageBuilder();
+emp.computeEmpWage();
 
 
         }
